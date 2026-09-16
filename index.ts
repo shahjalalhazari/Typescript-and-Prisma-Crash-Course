@@ -24,6 +24,7 @@ async function main() {
      */
 
     // CREATE ARTICLE ASSOCIATE WITH USER
+    /** 
     const article = await prisma.article.create({
         data: {
             title: "My First Article",
@@ -37,6 +38,11 @@ async function main() {
     });
 
     console.log(article);
+    */
+
+    // GET ALL ARTICLES
+    const articles = await prisma.article.findMany();
+    console.log(articles);
 
 }
 
