@@ -82,6 +82,7 @@ async function main() {
     */
 
     // UPDATE USER
+    /**
     const user = await prisma.user.update({
         where: {
             id: 1
@@ -90,8 +91,17 @@ async function main() {
             name: "John Doe Updated",
         }
     });
-
+    
     console.log(user);
+    */
+
+    // DELETE ARICLE
+    const article = await prisma.article.delete({
+        where: { id: 2 }
+    });
+    const articles = await prisma.article.findMany();
+
+    console.log(articles);
 
 }
 
