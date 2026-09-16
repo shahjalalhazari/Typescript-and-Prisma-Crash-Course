@@ -65,6 +65,7 @@ async function main() {
      */
 
     // GET ALL THE USERS AND THEIR ARTICLES
+    /**
     const users = await prisma.user.findMany({
         include: {
             articles: true
@@ -78,6 +79,19 @@ async function main() {
         })
         console.log("\n");
     })
+    */
+
+    // UPDATE USER
+    const user = await prisma.user.update({
+        where: {
+            id: 1
+        },
+        data: {
+            name: "John Doe Updated",
+        }
+    });
+
+    console.log(user);
 
 }
 
