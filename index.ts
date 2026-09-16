@@ -41,8 +41,43 @@ async function main() {
     */
 
     // GET ALL ARTICLES
+    /**
     const articles = await prisma.article.findMany();
     console.log(articles);
+     */
+
+    // CREATE USER AND ARTICLE IN A SINGLE TRANSACTION
+    /**
+    const user = await prisma.user.create({
+        data: {
+            name: "Sarah Smith",
+            email: "sarah.smith@example.com",
+            articles: {
+                create: {
+                    title: "Sarah's First Article",
+                    content: "This is the content of Sarah's first article."
+                }
+            }
+        }
+    });
+
+    console.log(user);
+     */
+
+    // GET ALL THE USERS AND THEIR ARTICLES
+    const users = await prisma.user.findMany({
+        include: {
+            articles: true
+        }
+    });
+    users.forEach((user) => {
+        console.log(`User: ${user.name}, Email: ${user.email}`);
+        console.log("Articles:");
+        user.articles.forEach((article) => {
+            console.log(`- Title: ${article.title}. Content: ${article.content}`);
+        })
+        console.log("\n");
+    })
 
 }
 
